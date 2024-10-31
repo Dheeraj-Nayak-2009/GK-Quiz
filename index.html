@@ -710,32 +710,32 @@
         }
     </script>
     <script>
-        // document.addEventListener("contextmenu", (e) => e.preventDefault());
+        document.addEventListener("contextmenu", (e) => e.preventDefault());
     </script>
     <script>
-        // document.addEventListener("contextmenu", (e) => {
-        //     e.preventDefault(); // Prevent the default right-click menu
+        document.addEventListener("contextmenu", (e) => {
+            e.preventDefault(); // Prevent the default right-click menu
 
-        //     // Get the popup element
-        //     const popup = document.getElementById("customPopup");
+            // Get the popup element
+            const popup = document.getElementById("customPopup");
 
-        //     // Position the popup where the right-click occurred, considering page scroll
-        //     popup.style.top = `${e.pageY}px`;
-        //     popup.style.left = `${e.pageX}px`;
+            // Position the popup where the right-click occurred, considering page scroll
+            popup.style.top = `${e.pageY}px`;
+            popup.style.left = `${e.pageX}px`;
 
-        //     // Show the popup
-        //     popup.style.display = "block";
-        // });
+            // Show the popup
+            popup.style.display = "block";
+        });
 
-        // // Hide the popup if the user clicks outside of it
-        // document.addEventListener("click", (e) => {
-        //     const popup = document.getElementById("customPopup");
+        // Hide the popup if the user clicks outside of it
+        document.addEventListener("click", (e) => {
+            const popup = document.getElementById("customPopup");
 
-        //     // Check if the click is outside the popup
-        //     if (!popup.contains(e.target)) {
-        //         popup.style.display = "none"; // Hide the popup
-        //     }
-        // });
+            // Check if the click is outside the popup
+            if (!popup.contains(e.target)) {
+                popup.style.display = "none"; // Hide the popup
+            }
+        });
 
     </script>
 </body>
