@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GK Quiz</title>
+    <link rel="icon" type="image/x-icon" href="https://www.iconarchive.com/download/i78301/messbook/outdated/Skull.ico">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        :root{
+            --nerdURL: url("https://is4-ssl.mzstatic.com/image/thumb/Purple111/v4/0b/cf/d4/0bcfd47c-3e92-7d12-3703-99dfc33e1a63/source/256x256bb.jpg");
+            --genius: url("https://rinconeducativo.org/wp-content/uploads/2022/10/Einstein_Albert_Imagen.jpg");
+            --smart: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDi34XNH6eJEKa_q2TxfEpxl-1npLZMn0FheMtsvHOefMFzil4kdsuinBfzq8BPuG6z5c&usqp=CAU");
+            --oldgkguy: url("https://i.ibb.co/yV45wkz/Who-is-the-current-US-President.png");
+            --justpass: url("https://i.ibb.co/vQtZjfK/98im3t.png");
+            --failure: url("https://i.imgflip.com/98in98.jpg");
+            --sigma: url("https://i.imgflip.com/98inwt.jpg");
+        }
+        
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #0e0e0e;
+            padding: 20px;
+            color: white;
+            background-image: url("https://i.redd.it/cool-wallpapers-v0-qm1v3yhghkvb1.jpg?width=3840&format=pjpg&auto=webp&s=a8af285636403f6646c38ef5debeaa0399b48730");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: inherit; /* Mirrors the body background */
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            filter: brightness(60%);
+            z-index: -1; /* Ensures it stays behind all content */
+        }
+
+        .heading-cont {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative; /* To allow absolute positioning of children */
+            padding: 5px;
+        }
+        h1 {
+            color: white; /* Keep the h1 text white and sharp */
+            font-size: 50px;
+            font-family: "Orbitron";
+            position: relative; /* Positioning context for gradient shadow */
+            z-index: 2; /* Ensure it is above the blurred gradient */
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Optional: add a white shadow for contrast */
+        }
+        .gradient-shadow {
+            position: absolute;
+            top: 0; /* Align with h1 */
+            left: 0; /* Align with h1 */
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to right, #ff007b, #0059ff, #00eeff, #ff007b);
+            background-size: 320px;
+            font-size: 50px;
+            font-family: "Orbitron";
+            -webkit-background-clip: text; /* For Safari */
+            background-clip: text;
+            color: transparent; /* Make the text transparent */
+            filter: blur(2px); /* Increase the blur to make it more shadow-like */
+            z-index: 1; /* Place it behind the h1 text */
+            opacity: 0.8; /* Adjust the opacity for a softer shadow effect */
+            transform: translate(3px, 3px); /* Slightly offset for a shadow effect */
+        }
+        section {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.194);
+            border-radius: 5px;
+            box-shadow: 0 0 10px 7px rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(2px);
+        }
+
+        .options {
+            margin: 10px 0;
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        input[type="radio"] {
+            display: none; /* Hide the default radio button */
+        }
+
+        label {
+            position: relative;
+            padding-left: 35px; /* Space for custom radio */
+            cursor: pointer;
+            font-size: 18px; /* Font size for the label */
+            line-height: 25px; /* Space out lines */
+            user-select: none; /* Prevent text selection */
+            text-shadow: 0 0 5px black;
+        }
+
+        label::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px; /* Width of the custom radio */
+            height: 20px; /* Height of the custom radio */
+            border: 2px solid #fff; /* Border color */
+            border-radius: 50%; /* Circular shape */
+            background: transparent; /* Background color */
+            transition: background 0.3s ease; /* Transition for hover effect */
+        }
+
+        input[type="radio"]:checked + label::before {
+            background: radial-gradient(#4fa4ff,rgb(106, 0, 255), rgb(0, 0, 0));
+            border-color: #ff007b;
+        }
+
+        input[type="radio"]:hover + label::before {
+            border-color: #ff007b; /* Change border color on hover */
+            zoom: 1.2;
+        }
+
+        button {
+            background-color: #ff007b; /* Button color */
+            color: white; /* Text color */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px 15px; /* Padding */
+            cursor: pointer; /* Pointer on hover */
+            font-size: 16px; /* Font size */
+            transition: background-color 0.3s; /* Transition effect */
+            transition: box-shadow 0.2s;
+        }
+        
+        button:hover {
+            background-color: #ff0055; /* Darker shade on hover */
+            box-shadow: 0 0 10px 4px rgb(255, 0, 255);
+        }
+
+        label:hover {
+            font-size: 20px;
+        }
+
+        h2 {
+            text-shadow: 0 0 10px black;
+            user-select: none;
+        }
+
+        .correct {
+            text-shadow: 0 0 5px rgb(0, 135, 0), 0 0 10px rgb(0, 135, 0); /* Green shadow for correct answers */
+        }
+
+        .wrong {
+            text-shadow: 0 0 5px rgb(255, 0, 0), 0 0 10px rgb(255, 0, 0), 0 0 15px rgb(255, 0, 0); /* Red shadow for wrong answers */
+        }
+
+        .correct-label {
+            text-shadow: 0 0 5px rgba(0, 255, 0, 1), 0 0 10px rgba(0, 255, 0, 1); /* Green shadow for correct label */
+        }
+
+        /* Banner Styles */
+        #resultBanner {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.582);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 999; /* Ensure it appears above everything else */
+            text-align: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 10px 2px rgb(19, 19, 19);
+        }
+
+        #bannerClose {
+            background-color: #ff007b; /* Button color */
+            color: white; /* Text color */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px 15px; /* Padding */
+            cursor: pointer; /* Pointer on hover */
+            font-size: 16px; /* Font size */
+            transition: background-color 0.3s; /* Transition effect */
+        }
+
+        #bannerClose:hover {
+            background-color: #ff0055; /* Darker shade on hover */
+        }
+        .meme{
+            width: 200px;
+            height: 200px;
+            background-image: var(--nerdURL);
+            background-size: cover;
+            background-position: center;
+            margin: 0 auto 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px 2px rgb(10, 153, 255);
+        }
+        .hashcont{
+            text-shadow: 0 0 4px rgb(30, 83, 255);
+            font-size: 20px;
+        }
+        #resultMessage{
+            font-size: 20px;
+        }
+        .popup {
+            display: none;
+            position: absolute;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            width: 250px;
+            text-align: center;
+        }
+
+        .popup-meme {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .popup-message {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        @media only screen and (max-width: 600px){
+            #resultMessage{
+                font-size: 20px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+            #resultBanner{
+                margin: 2px;
+            }
+            button:hover {
+                background-color: #ff0055; /* Darker shade on hover */
+                box-shadow: none;
+            }
+            label:hover {
+                font-size: 18px;
+            }
+            input[type="radio"]:hover + label::before {
+                zoom: 1;
+            }
+            input[type="radio"]:checked + label::before {
+                background: radial-gradient(#4fa4ff,rgb(106, 0, 255), rgb(0, 0, 0));
+                border-color: #ff007b;
+                zoom: 1.2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="heading-cont">
+        <div class="gradient-shadow">GK Quiz</div>
+        <h1>GK Quiz</h1>
+    </div>
+
+    <!-- Question 1 -->
+    <section>
+        <h2 id="q1">What is the capital of Japan?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="capital" id="capital1" value="Beijing"><label for="capital1">Beijing</label></div>
+            <div class="option"><input type="radio" name="capital" id="capital2" value="Seoul"><label for="capital2">Seoul</label></div>
+            <div class="option"><input type="radio" name="capital" id="capital3" value="Tokyo"><label for="capital3">Tokyo</label></div>
+            <div class="option"><input type="radio" name="capital" id="capital4" value="Bangkok"><label for="capital4">Bangkok</label></div>
+        </div>
+    </section>
+
+    <!-- Question 2 -->
+    <section>
+        <h2 id="q2">Which continent is the Sahara Desert located on?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="sahara" id="sahara1" value="Asia"><label for="sahara1">Asia</label></div>
+            <div class="option"><input type="radio" name="sahara" id="sahara2" value="Africa"><label for="sahara2">Africa</label></div>
+            <div class="option"><input type="radio" name="sahara" id="sahara3" value="Australia"><label for="sahara3">Australia</label></div>
+            <div class="option"><input type="radio" name="sahara" id="sahara4" value="North America"><label for="sahara4">North America</label></div>
+        </div>
+    </section>
+
+    <!-- Question 3 -->
+    <section>
+        <h2 id="q3">Who built the pyramids?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="pyramid" id="pyramid1" value="Greeks"><label for="pyramid1">Greeks</label></div>
+            <div class="option"><input type="radio" name="pyramid" id="pyramid2" value="Egyptians"><label for="pyramid2">Egyptians</label></div>
+            <div class="option"><input type="radio" name="pyramid" id="pyramid3" value="Romans"><label for="pyramid3">Romans</label></div>
+            <div class="option"><input type="radio" name="pyramid" id="pyramid4" value="Mayans"><label for="pyramid4">Mayans</label></div>
+        </div>
+    </section>
+
+    <!-- Question 4 -->
+    <section>
+        <h2 id="q4">Who was the first woman to fly solo across the Atlantic?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="first_flyer" id="flyer1" value="Amelia Earhart"><label for="flyer1">Amelia Earhart</label></div>
+            <div class="option"><input type="radio" name="first_flyer" id="flyer2" value="Bessie Coleman"><label for="flyer2">Bessie Coleman</label></div>
+            <div class="option"><input type="radio" name="first_flyer" id="flyer3" value="Harriet Quimby"><label for="flyer3">Harriet Quimby</label></div>
+            <div class="option"><input type="radio" name="first_flyer" id="flyer4" value="Jacqueline Cochran"><label for="flyer4">Jacqueline Cochran</label></div>
+        </div>
+    </section>
+
+    <!-- Question 5 -->
+    <section>
+        <h2 id="q5">Who discovered penicillin?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="penicillin" id="penicillin1" value="Louis Pasteur"><label for="penicillin1">Louis Pasteur</label></div>
+            <div class="option"><input type="radio" name="penicillin" id="penicillin2" value="Alexander Fleming"><label for="penicillin2">Alexander Fleming</label></div>
+            <div class="option"><input type="radio" name="penicillin" id="penicillin3" value="Joseph Lister"><label for="penicillin3">Joseph Lister</label></div>
+            <div class="option"><input type="radio" name="penicillin" id="penicillin4" value="Edward Jenner"><label for="penicillin4">Edward Jenner</label></div>
+        </div>
+    </section>
+
+    <!-- Question 6 -->
+    <section>
+        <h2 id="q6">What is the capital of Australia?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="australia" id="australia1" value="Sydney"><label for="australia1">Sydney</label></div>
+            <div class="option"><input type="radio" name="australia" id="australia2" value="Melbourne"><label for="australia2">Melbourne</label></div>
+            <div class="option"><input type="radio" name="australia" id="australia3" value="Canberra"><label for="australia3">Canberra</label></div>
+            <div class="option"><input type="radio" name="australia" id="australia4" value="Perth"><label for="australia4">Perth</label></div>
+        </div>
+    </section>
+
+    <!-- Question 7 -->
+    <section>
+        <h2 id="q7">Which planet is known as the Red Planet?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="redPlanet" id="redPlanet1" value="Mars"><label for="redPlanet1">Mars</label></div>
+            <div class="option"><input type="radio" name="redPlanet" id="redPlanet2" value="Jupiter"><label for="redPlanet2">Jupiter</label></div>
+            <div class="option"><input type="radio" name="redPlanet" id="redPlanet3" value="Venus"><label for="redPlanet3">Venus</label></div>
+            <div class="option"><input type="radio" name="redPlanet" id="redPlanet4" value="Saturn"><label for="redPlanet4">Saturn</label></div>
+        </div>
+    </section>
+
+    <!-- Question 8 -->
+    <section>
+        <h2 id="q8">Who developed the theory of relativity?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="relativity" id="relativity1" value="Albert Einstein"><label for="relativity1">Albert Einstein</label></div>
+            <div class="option"><input type="radio" name="relativity" id="relativity2" value="Isaac Newton"><label for="relativity2">Isaac Newton</label></div>
+            <div class="option"><input type="radio" name="relativity" id="relativity3" value="Galileo Galilei"><label for="relativity3">Galileo Galilei</label></div>
+            <div class="option"><input type="radio" name="relativity" id="relativity4" value="Niels Bohr"><label for="relativity4">Niels Bohr</label></div>
+        </div>
+    </section>
+
+    <!-- Question 9 -->
+    <section>
+        <h2 id="q9">What is the origin of coffee?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="coffee" id="coffee1" value="Brazil"><label for="coffee1">Brazil</label></div>
+            <div class="option"><input type="radio" name="coffee" id="coffee2" value="Ethiopia"><label for="coffee2">Ethiopia</label></div>
+            <div class="option"><input type="radio" name="coffee" id="coffee3" value="Colombia"><label for="coffee3">Colombia</label></div>
+            <div class="option"><input type="radio" name="coffee" id="coffee4" value="Vietnam"><label for="coffee4">Vietnam</label></div>
+        </div>
+    </section>
+
+    <!-- Question 10 -->
+    <section>
+        <h2 id="q10">What is the chemical symbol for oxygen?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="oxygen" id="oxygen1" value="O"><label for="oxygen1">O</label></div>
+            <div class="option"><input type="radio" name="oxygen" id="oxygen2" value="Ox"><label for="oxygen2">Ox</label></div>
+            <div class="option"><input type="radio" name="oxygen" id="oxygen3" value="O2"><label for="oxygen3">O2</label></div>
+            <div class="option"><input type="radio" name="oxygen" id="oxygen4" value="H2O"><label for="oxygen4">H2O</label></div>
+        </div>
+    </section>
+
+    <!-- Question 11 -->
+    <section>
+        <h2 id="q11">What is the largest mammal in the world?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="mammal" id="mammal1" value="Elephant"><label for="mammal1">Elephant</label></div>
+            <div class="option"><input type="radio" name="mammal" id="mammal2" value="Blue Whale"><label for="mammal2">Blue Whale</label></div>
+            <div class="option"><input type="radio" name="mammal" id="mammal3" value="Giraffe"><label for="mammal3">Giraffe</label></div>
+            <div class="option"><input type="radio" name="mammal" id="mammal4" value="Great White Shark"><label for="mammal4">Great White Shark</label></div>
+        </div>
+    </section>
+
+    <!-- Question 12 -->
+    <section>
+        <h2 id="q12">What is the most spoken language in the world?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="language" id="language1" value="English"><label for="language1">English</label></div>
+            <div class="option"><input type="radio" name="language" id="language2" value="Mandarin"><label for="language2">Mandarin</label></div>
+            <div class="option"><input type="radio" name="language" id="language3" value="Spanish"><label for="language3">Spanish</label></div>
+            <div class="option"><input type="radio" name="language" id="language4" value="Hindi"><label for="language4">Hindi</label></div>
+        </div>
+    </section>
+
+    <!-- Question 13 -->
+    <section>
+        <h2 id="q13">What is the hardest natural substance on Earth?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="hardest" id="hardest1" value="Iron"><label for="hardest1">Iron</label></div>
+            <div class="option"><input type="radio" name="hardest" id="hardest2" value="Diamond"><label for="hardest2">Diamond</label></div>
+            <div class="option"><input type="radio" name="hardest" id="hardest3" value="Gold"><label for="hardest3">Gold</label></div>
+            <div class="option"><input type="radio" name="hardest" id="hardest4" value="Quartz"><label for="hardest4">Quartz</label></div>
+        </div>
+    </section>
+
+    <!-- Question 14 -->
+    <section>
+        <h2 id="q14">What is the smallest country in the world?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="smallestCountry" id="smallestCountry1" value="Monaco"><label for="smallestCountry1">Monaco</label></div>
+            <div class="option"><input type="radio" name="smallestCountry" id="smallestCountry2" value="Nauru"><label for="smallestCountry2">Nauru</label></div>
+            <div class="option"><input type="radio" name="smallestCountry" id="smallestCountry3" value="Vatican City"><label for="smallestCountry3">Vatican City</label></div>
+            <div class="option"><input type="radio" name="smallestCountry" id="smallestCountry4" value="San Marino"><label for="smallestCountry4">San Marino</label></div>
+        </div>
+    </section>
+
+    <!-- Question 15 -->
+    <section>
+        <h2 id="q15">What is the largest ocean on Earth?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="largestOcean" id="largestOcean1" value="Atlantic Ocean"><label for="largestOcean1">Atlantic Ocean</label></div>
+            <div class="option"><input type="radio" name="largestOcean" id="largestOcean2" value="Indian Ocean"><label for="largestOcean2">Indian Ocean</label></div>
+            <div class="option"><input type="radio" name="largestOcean" id="largestOcean3" value="Arctic Ocean"><label for="largestOcean3">Arctic Ocean</label></div>
+            <div class="option"><input type="radio" name="largestOcean" id="largestOcean4" value="Pacific Ocean"><label for="largestOcean4">Pacific Ocean</label></div>
+        </div>
+    </section>
+
+    <!-- Question 16 -->
+    <section>
+        <h2 id="q16">Which gas do plants absorb from the atmosphere?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="plantGas" id="plantGas1" value="Oxygen"><label for="plantGas1">Oxygen</label></div>
+            <div class="option"><input type="radio" name="plantGas" id="plantGas2" value="Nitrogen"><label for="plantGas2">Nitrogen</label></div>
+            <div class="option"><input type="radio" name="plantGas" id="plantGas3" value="Carbon Dioxide"><label for="plantGas3">Carbon Dioxide</label></div>
+            <div class="option"><input type="radio" name="plantGas" id="plantGas4" value="Hydrogen"><label for="plantGas4">Hydrogen</label></div>
+        </div>
+    </section>
+
+    <!-- Question 17 -->
+    <section>
+        <h2 id="q17">What is the capital of France?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="capitalFrance" id="capitalFrance1" value="Madrid"><label for="capitalFrance1">Madrid</label></div>
+            <div class="option"><input type="radio" name="capitalFrance" id="capitalFrance2" value="Rome"><label for="capitalFrance2">Rome</label></div>
+            <div class="option"><input type="radio" name="capitalFrance" id="capitalFrance3" value="Paris"><label for="capitalFrance3">Paris</label></div>
+            <div class="option"><input type="radio" name="capitalFrance" id="capitalFrance4" value="Berlin"><label for="capitalFrance4">Berlin</label></div>
+        </div>
+    </section>
+
+    <!-- Question 18 -->
+    <section>
+        <h2 id="q18">Which planet is known for its rings?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="ringsPlanet" id="ringsPlanet1" value="Jupiter"><label for="ringsPlanet1">Jupiter</label></div>
+            <div class="option"><input type="radio" name="ringsPlanet" id="ringsPlanet2" value="Saturn"><label for="ringsPlanet2">Saturn</label></div>
+            <div class="option"><input type="radio" name="ringsPlanet" id="ringsPlanet3" value="Uranus"><label for="ringsPlanet3">Uranus</label></div>
+            <div class="option"><input type="radio" name="ringsPlanet" id="ringsPlanet4" value="Neptune"><label for="ringsPlanet4">Neptune</label></div>
+        </div>
+    </section>
+
+    <!-- Question 19 -->
+    <section>
+        <h2 id="q19">What is the largest continent?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="largestContinent" id="largestContinent1" value="Africa"><label for="largestContinent1">Africa</label></div>
+            <div class="option"><input type="radio" name="largestContinent" id="largestContinent2" value="Asia"><label for="largestContinent2">Asia</label></div>
+            <div class="option"><input type="radio" name="largestContinent" id="largestContinent3" value="North America"><label for="largestContinent3">North America</label></div>
+            <div class="option"><input type="radio" name="largestContinent" id="largestContinent4" value="South America"><label for="largestContinent4">South America</label></div>
+        </div>
+    </section>
+
+    <!-- Question 20 -->
+    <section>
+        <h2 id="q20">What is the main ingredient in guacamole?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="guacamole" id="guacamole1" value="Tomato"><label for="guacamole1">Tomato</label></div>
+            <div class="option"><input type="radio" name="guacamole" id="guacamole2" value="Avocado"><label for="guacamole2">Avocado</label></div>
+            <div class="option"><input type="radio" name="guacamole" id="guacamole3" value="Onion"><label for="guacamole3">Onion</label></div>
+            <div class="option"><input type="radio" name="guacamole" id="guacamole4" value="Pepper"><label for="guacamole4">Pepper</label></div>
+        </div>
+    </section>
+
+    <!-- Question 21 -->
+    <section>
+        <h2 id="q21">What is the hardest rock type?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="hardestRock" id="hardestRock1" value="Igneous"><label for="hardestRock1">Igneous</label></div>
+            <div class="option"><input type="radio" name="hardestRock" id="hardestRock2" value="Sedimentary"><label for="hardestRock2">Sedimentary</label></div>
+            <div class="option"><input type="radio" name="hardestRock" id="hardestRock3" value="Metamorphic"><label for="hardestRock3">Metamorphic</label></div>
+            <div class="option"><input type="radio" name="hardestRock" id="hardestRock4" value="Limestone"><label for="hardestRock4">Limestone</label></div>
+        </div>
+    </section>
+
+    <!-- Question 22 -->
+    <section>
+        <h2 id="q22">Which is the longest river in the world?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="longestRiver" id="longestRiver1" value="Amazon"><label for="longestRiver1">Amazon</label></div>
+            <div class="option"><input type="radio" name="longestRiver" id="longestRiver2" value="Nile"><label for="longestRiver2">Nile</label></div>
+            <div class="option"><input type="radio" name="longestRiver" id="longestRiver3" value="Yangtze"><label for="longestRiver3">Yangtze</label></div>
+            <div class="option"><input type="radio" name="longestRiver" id="longestRiver4" value="Mississippi"><label for="longestRiver4">Mississippi</label></div>
+        </div>
+    </section>
+
+    <!-- Question 23 -->
+    <section>
+        <h2 id="q23">What is the smallest bone in the human body?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="smallestBone" id="smallestBone1" value="Femur"><label for="smallestBone1">Femur</label></div>
+            <div class="option"><input type="radio" name="smallestBone" id="smallestBone2" value="Stapes"><label for="smallestBone2">Stapes</label></div>
+            <div class="option"><input type="radio" name="smallestBone" id="smallestBone3" value="Tibia"><label for="smallestBone3">Tibia</label></div>
+            <div class="option"><input type="radio" name="smallestBone" id="smallestBone4" value="Radius"><label for="smallestBone4">Radius</label></div>
+        </div>
+    </section>
+
+    <!-- Question 24 -->
+    <section>
+        <h2 id="q24">What is the chemical formula for table salt?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="tableSalt" id="tableSalt1" value="NaCl"><label for="tableSalt1">NaCl</label></div>
+            <div class="option"><input type="radio" name="tableSalt" id="tableSalt2" value="KCl"><label for="tableSalt2">KCl</label></div>
+            <div class="option"><input type="radio" name="tableSalt" id="tableSalt3" value="CaCl2"><label for="tableSalt3">CaCl2</label></div>
+            <div class="option"><input type="radio" name="tableSalt" id="tableSalt4" value="MgCl2"><label for="tableSalt4">MgCl2</label></div>
+        </div>
+    </section>
+
+    <!-- Question 25 -->
+    <section>
+        <h2 id="q25">What is the primary gas found in the Earth's atmosphere?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="primaryGas" id="primaryGas1" value="Oxygen"><label for="primaryGas1">Oxygen</label></div>
+            <div class="option"><input type="radio" name="primaryGas" id="primaryGas2" value="Carbon Dioxide"><label for="primaryGas2">Carbon Dioxide</label></div>
+            <div class="option"><input type="radio" name="primaryGas" id="primaryGas3" value="Nitrogen"><label for="primaryGas3">Nitrogen</label></div>
+            <div class="option"><input type="radio" name="primaryGas" id="primaryGas4" value="Hydrogen"><label for="primaryGas4">Hydrogen</label></div>
+        </div>
+    </section>
+
+    <!-- Question 26 -->
+    <section>
+        <h2 id="q26">Which instrument is used to measure atmospheric pressure?</h2>
+        <div class="options">
+            <div class="option"><input type="radio" name="pressureInstrument" id="pressureInstrument1" value="Barometer"><label for="pressureInstrument1">Barometer</label></div>
+            <div class="option"><input type="radio" name="pressureInstrument" id="pressureInstrument2" value="Thermometer"><label for="pressureInstrument2">Thermometer</label></div>
+            <div class="option"><input type="radio" name="pressureInstrument" id="pressureInstrument3" value="Hygrometer"><label for="pressureInstrument3">Hygrometer</label></div>
+            <div class="option"><input type="radio" name="pressureInstrument" id="pressureInstrument4" value="Anemometer"><label for="pressureInstrument4">Anemometer</label></div>
+        </div>
+    </section>
+
+    
+
+    <button onclick="submitAnswers()">Submit</button>
+
+    <!-- Result Banner -->
+    <div id="resultBanner">
+        <div class="meme"></div>
+        <div class="hashcont"></div>
+        <h3 id="resultMessage"></h3>
+        <button id="bannerClose" onclick="closeBanner()">Close</button>
+    </div>
+
+    <!-- rightclick popup -->
+    <div id="customPopup" class="popup">
+        <img src="https://image-cdn-ak.spotifycdn.com/image/ab67706c0000d72c2423ef2846c4cec13c24a03b" alt="Meme" class="popup-meme">
+        <p class="popup-message" style="font-size: 13px;">Do you think you'll get answers by inspecting?<br>That's not even an option!</p>
+    </div>    
+
+    <script>
+        function submitAnswers() {
+            const correctAnswers = {
+                capital: "Tokyo",
+                sahara: "Africa",
+                pyramid: "Egyptians",
+                first_flyer: "Amelia Earhart",
+                penicillin: "Alexander Fleming",
+                australia: "Canberra",
+                redPlanet: "Mars",
+                relativity: "Albert Einstein",
+                coffee: "Ethiopia",
+                oxygen: "O",
+                mammal: "Blue Whale",
+                language: "Mandarin",
+                hardest: "Diamond",
+                smallestCountry: "Vatican City",
+                largestOcean: "Pacific Ocean",
+                plantGas: "Carbon Dioxide",
+                capitalFrance: "Paris",
+                ringsPlanet: "Saturn",
+                largestContinent: "Asia",
+                guacamole: "Avocado",
+                hardestRock: "Metamorphic",
+                longestRiver: "Nile",
+                smallestBone: "Stapes",
+                tableSalt: "NaCl",
+                primaryGas: "Nitrogen",
+                pressureInstrument: "Barometer"
+            };
+
+            let score = 0; 
+            const totalQuestions = Object.keys(correctAnswers).length;
+
+            // Reset previous styles
+            const questionHeaders = document.querySelectorAll('h2');
+            const labels = document.querySelectorAll('label');
+            questionHeaders.forEach(header => header.classList.remove('correct', 'wrong'));
+            labels.forEach(label => label.classList.remove('correct-label'));
+
+            // Loop through each correct answer to check user's answer
+            for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
+                const selectedAnswer = document.querySelector(`input[name="${question}"]:checked`);
+                const questionHeader = document.getElementById(`q${Object.keys(correctAnswers).indexOf(question) + 1}`);
+                const correctLabel = document.querySelector(`input[name="${question}"][value="${correctAnswer}"] + label`);
+
+                if (selectedAnswer) {
+                    if (selectedAnswer.value === correctAnswer) {
+                        questionHeader.classList.add('correct');
+                        score++; 
+                    } else {
+                        questionHeader.classList.add('wrong');
+                        if (correctLabel) {
+                            correctLabel.classList.add('correct-label');
+                        }
+                    }
+                }
+            }
+
+            const scorePercentage = (score / totalQuestions) * 100;
+            const memeDiv = document.querySelector('.meme');
+            const hashdiv = document.querySelector('.hashcont');
+
+            // Adjust meme and hashtag based on score
+            if (scorePercentage === 100) {
+                memeDiv.style.backgroundImage = 'var(--nerdURL)';
+                hashdiv.innerHTML = "#nerd";
+            } else if (scorePercentage >= 85) {
+                memeDiv.style.backgroundImage = 'var(--genius)';
+                hashdiv.innerHTML = "#genius";
+            } else if (scorePercentage >= 60) {
+                memeDiv.style.backgroundImage = 'var(--smart)';
+                hashdiv.innerHTML = "#smart";
+            } else if (scorePercentage >= 40) {
+                memeDiv.style.backgroundImage = 'var(--oldgkguy)';
+                hashdiv.innerHTML = "#averageGK";
+            } else if (scorePercentage >= 30) {
+                memeDiv.style.backgroundImage = 'var(--justpass)';
+                hashdiv.innerHTML = "#just-pass";
+            } else if (scorePercentage >= 10) {
+                memeDiv.style.backgroundImage = 'var(--failure)';
+                hashdiv.innerHTML = "#failure";
+            } else {
+                memeDiv.style.backgroundImage = 'var(--sigma)';
+                hashdiv.innerHTML = "#gigaChad";
+            }
+
+            // Display result banner
+            const resultBanner = document.getElementById('resultBanner');
+            const resultMessage = document.getElementById('resultMessage');
+            resultMessage.textContent = `You answered ${score} out of ${totalQuestions} questions correctly!`;
+            resultBanner.style.display = 'block';
+        }
+
+
+        function closeBanner() {
+            const resultBanner = document.getElementById('resultBanner');
+            resultBanner.style.display = 'none'; // Hide the banner
+            // No need to reset classes; only hide the result banner
+        }
+
+
+        function resetQuiz() {
+            const questionHeaders = document.querySelectorAll('h2');
+            const labels = document.querySelectorAll('label');
+
+            // Remove correct and wrong styles from questions
+            questionHeaders.forEach(header => {
+                header.classList.remove('correct', 'wrong');
+            });
+
+            // Remove correct-label style from all labels
+            labels.forEach(label => {
+                label.classList.remove('correct-label');
+            });
+
+            // Uncheck all radio buttons
+            const inputs = document.querySelectorAll('input[type="radio"]');
+            inputs.forEach(input => {
+                input.checked = false;
+            });
+
+            // Hide the banner
+            const resultBanner = document.getElementById('resultBanner');
+            resultBanner.style.display = 'none';
+        }
+    </script>
+    <script>
+        document.addEventListener("contextmenu", (e) => e.preventDefault());
+    </script>
+    <script>
+        document.addEventListener("contextmenu", (e) => {
+            e.preventDefault(); // Prevent the default right-click menu
+
+            // Get the popup element
+            const popup = document.getElementById("customPopup");
+
+            // Position the popup where the right-click occurred, considering page scroll
+            popup.style.top = `${e.pageY}px`;
+            popup.style.left = `${e.pageX}px`;
+
+            // Show the popup
+            popup.style.display = "block";
+        });
+
+        // Hide the popup if the user clicks outside of it
+        document.addEventListener("click", (e) => {
+            const popup = document.getElementById("customPopup");
+
+            // Check if the click is outside the popup
+            if (!popup.contains(e.target)) {
+                popup.style.display = "none"; // Hide the popup
+            }
+        });
+
+    </script>
+</body>
+</html>
